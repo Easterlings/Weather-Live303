@@ -60,12 +60,12 @@ Page({
       success:function(){
         console.log("jump success")
       },
-      //fail:function(){
-      //  console.log("jump failed")
-      //},
-      //complete:function(){
-      //  console.log("jump complete")
-      //},
+      fail:function(){
+       console.log("jump failed")
+      },
+      complete:function(){
+       console.log("jump complete")
+      },
     })
   }
 })
