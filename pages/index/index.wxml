@@ -9,8 +9,10 @@
     </block>
   </view>
 
-  <view catchtap="onTapJump" class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view catchtap="onTapJump" class="usermotto">     
+    <button bindtap="rr">
+      <text class="user-motto">{{motto}}</text>
+    </button>    
   </view>
 
 </view>
