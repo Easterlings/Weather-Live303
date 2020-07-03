@@ -7,6 +7,9 @@
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
+    
+    <text class="ID">{{Id}}</text>
+ 
   </view>
 
   <view catchtap="onTapJump" class="usermotto">     

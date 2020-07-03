@@ -1,8 +1,4 @@
-.kk{
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-}
+
 
 .container {
   height: 100%;
@@ -15,7 +11,7 @@
   box-sizing: border-box;
 } 
 .weather{
-  height: 110px;
+  height: 125px;
   width: 100%;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -25,22 +21,74 @@
   font-size: 14px;
   box-sizing: border-box;
 }
+.air{
+  height:65px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  color: #FFF;
+  padding: 5PX 15px;
+  display: flex;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+
+
+.cond_txt{  
+  font-size: 20px;
+  box-sizing: border-box;
+}
+.cond_txt2{  
+  font-size: 17px;
+  box-sizing: border-box;
+}
+.cond_txt3{  
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.tmp{
+  height: 200px;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 1px;
+  border-radius: 5px;
+  color: #FFF;
+  padding: 5PX 15px;
+  display: flex;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.hum{
+  height: 180px;
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  color: #FFF;
+  padding: 5PX 15px;
+  display: flex;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
 .weather>view{
   flex: 1;
 }
 .weather>view>view{
   margin: 5px 0;
 }
-.yesterday{
+.weathercolor{
   background-color: #30BCAF;
 }
-.today{
+.air_color{
   background-color: #78A4be;
 }
-.tomorrow{
+/* .chartcolor{
   background-color: #FCB654;
-}
-.location,.cond_txt{
+} */
+.location{
   font-size: 14px;
 }
 .date,.tmp{
@@ -58,3 +106,4 @@
   font-size: 10px;
   text-align: center;
 }
+

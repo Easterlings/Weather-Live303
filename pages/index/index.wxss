@@ -17,5 +17,11 @@
 }
 
 .usermotto {
-  margin-top: 200px;
+  margin-top: 150px;
+}
+
+.ID {
+  margin-top: 30px;
+  font-size: larger;
+  font-family: fantasy;
 }
