@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="weather weathercolor">
+    <view>     
+      <view class='cond_txt0'>  {{now.tmp}}℃ </view>  
+      <view class='cond_txt1'>{{today.cond_txt_d}}</view>  
+      <view class='cond_txt3'>{{basic.location}}/{{basic.parent_city}}</view>
+      <view class='cond_txt2'>{{today.tmp_min}}℃~{{today.tmp_max}}℃</view> 
+    </view>
+    <view>
+      <view class='weather_icon'>
+        <image src='{{todyIcon}}'></image>
+      </view>
+      <!-- <view class='lastUpdateDate'>最后更新：{{update}}</view> -->
+    </view>
+  </view>
+
+  <view class="air air_color">
+    <view>
+      <view class='cond_txt2'>空气质量：{{air.qlty}}</view>
+      <view class='cond_txt2'>空气质量指数：{{air.aqi}}</view>
+    </view>
+  </view>
+
+  <view class="tmp chartcolor">   
+      <view > 
+        <canvas canvas-id="lineCanvas" disable-scroll="true" 
+        class="canvas" bindtouchstart="touchHandler"></canvas>
+      </view>  
+  </view> 
+
+  
+  
+  
+  <view class="hum chartcolor">
+    <view>   
+      <view > 
+        <canvas canvas-id="humCanvas" disable-scroll="true" 
+        class="canvas" bindtouchstart="touchHandler"></canvas>
+      </view>  
+    </view>   
+  </view>
+
+  <view class='lastUpdateDate'>最后更新：{{update}}</view>
+</view>
