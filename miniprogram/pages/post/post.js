@@ -2,6 +2,7 @@ const app = getApp()
 var wxCharts = require('../../utils/wxcharts.js')
 var tmpChart = null;
 var humChart = null;
+
 Page({  
   data: {
     update: '',
@@ -19,6 +20,7 @@ Page({
   },
   onLoad: function () {
     this.getLocation();
+    // this.write();
   },
   //事件处理函数
   bindViewTap: function() {
@@ -40,27 +42,7 @@ Page({
       }
     })
   },
-  getnowWeatherInfo: function (latitude, longitude){    //获取天气
-    var _this = this;
-    var key = '015d4eb6e2244182a92a5ee12d03f911';//你自己的key
-    //需要在微信公众号的设置-开发设置中配置服务器域名
-    //console.log(latitude,longitude);
-    var url = 'https://free-api.heweather.net/s6/weather/now?key='+key+'&location=' + longitude + ',' + latitude;    
-    console.log("hello");
-    wx.request({
-      url: url,
-      data: {},
-      method: 'GET',
-      success: function (res) {
-        console.log("hello");
-        var weathernow = res.data.HeWeather6[0].daily_forecast[0];//当前天气
-        _this.setData({
-          now:weathernow,
-        })
-        console.log("now",now);
-      }
-    })    
-  },
+
   getWeatherInfo: function (latitude, longitude){    //获取天气
     var _this = this;
     var key = '015d4eb6e2244182a92a5ee12d03f911';//你自己的key
@@ -68,15 +50,15 @@ Page({
     //console.log(latitude,longitude);
     var url = 'https://free-api.heweather.net/s6/weather/forecast?key='+key+'&location=' + longitude + ',' + latitude; 
     var url2 = 'https://free-api.heweather.net/s6/weather/now?key='+key+'&location=' + longitude + ',' + latitude;    
-    console.log(url2);
+    //console.log(url2);
     wx.request({
       url: url2,
       data: {},
       method: 'GET',
       success: function (res) {
-        console.log(res);
+        //console.log(res);
         var weathernow = res.data.HeWeather6[0].now;//当前天气
-        console.log("hello",weathernow);
+        //console.log("hello",weathernow);
         _this.setData({
           now:weathernow,
         })
@@ -117,6 +99,7 @@ Page({
         // console.log("today");
          //console.log(daily_forecast_today);
         _this.getAirInfo(basic, latitude, longitude);
+        
         _this.createChart();       
       }
     })
@@ -136,8 +119,11 @@ Page({
         _this.setData({
           air:air_now_city, 
         })
+        _this.write();
       }
     })
+    
+
   },
 
   createChart: function(e) {
@@ -273,7 +259,7 @@ Page({
       data: data
     }
 },
-createmintmpData: function (today) {    
+  createmintmpData: function (today) {    
   var categories = [];
   var data = [];
 
@@ -289,13 +275,33 @@ createmintmpData: function (today) {
     data: data
   }
 },
-  // touchHandler: function (e) {
-  //   console.log(tmpChart.getCurrentDataIndex(e));
-  //   tmpChart.showToolTip(e, {
-  //     // background: '#7cb5ec',
-  //     format: function (item, category) {
-  //         return category + ' ' + item.name + ':' + item.data 
-  //     }
-  //   });
-  // },
+
+  write:function(){                                      //向云数据库写入一次查询记录
+    const db = wx.cloud.database()
+    const todosCollection = db.collection('2')
+    var aqi = this.data.air.qlty + "-" + this.data.air.aqi
+    var wea = this.data.now.cond_txt
+    var tmp = this.data.now.tmp
+    var local = this.data.basic.location +"-"+ this.data.basic.parent_city +"-"+ this.data.basic.admin_area
+    console.log(this.data.air)
+    console.log(this.data.basic)
+    console.log(this.data.now)
+    todosCollection.add({
+        // data 字段表示需新增的 JSON 数据
+        data: {
+        // _id: 'todo-identifiant-aleatoire', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
+        AQI: aqi,
+        WEA: wea,      
+        TMP: tmp,        
+        LOCAL: local,// 为待办事项添加一个地理位置         
+        },
+        success: function(res) {
+        // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+          console.log(res)
+          
+        },
+        fail: console.error
+      })
+  }
+
 })

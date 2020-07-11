@@ -2,6 +2,9 @@
 //获取应用实例
 const app = getApp()
 
+
+
+
 Page({
   data: {
     Id: '实时天气',
@@ -43,6 +46,11 @@ Page({
         }
       })
     }
+    
+    //this.test();
+       //云函数测试
+    //this.write();
+      //数据库写入测试
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -68,8 +76,45 @@ Page({
        console.log("jump complete")
       },
     })
+   
   },
-  main:function(){
-      console.log("hehe")
-  }
+//   test:function(){
+//     wx.cloud.callFunction({
+//       name:'add',
+//       data:{
+//         a:1,
+//         b:2,
+//       },
+//       success:function(res){
+//         console.log(res.result.sum)
+//       },
+//       fail:function(err){
+//         console.log(err)
+//       }
+//     })
+//   },
+
+
+// write:function(){
+//   const db = wx.cloud.database()
+//   const todosCollection = db.collection('1')
+//   todosCollection.add({
+//       // data 字段表示需新增的 JSON 数据
+//       data: {
+//         // _id: 'todo-identifiant-aleatoire', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
+//         AQI: "181",
+//         WEA: "小雨",      
+//         TMP: "31",        
+//         LOCAL: "西安",// 为待办事项添加一个地理位置      
+//       },
+//       success: function(res) {
+//         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+//         console.log(res)
+//         console.log("wtfffffffffff")
+//       },
+//       fail: console.error
+//     })
+// }
 })
+
+
